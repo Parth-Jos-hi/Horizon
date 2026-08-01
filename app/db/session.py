@@ -1,7 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from app.config import settings
+
 ## this will create a connection b/w the sql and the database 
 engine = create_engine(
-    "postgresql+psycopg2://postgres:Imparth@12_12@db.fhsvahlkqpxyzrylrcna.supabase.co:5432/postgres"
+    settings.DATABASE_URL
     ,echo = True
 )
+
