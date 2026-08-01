@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker,Declerative_Base
+from sqlalchemy.orm import sessionmaker,autocommit
 from app.config import settings
 
 ## this will create a connection b/w the sql and the database 

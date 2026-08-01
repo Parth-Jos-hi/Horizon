@@ -14,7 +14,7 @@ class User(Base):
     id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True), primary_key=True, server_default=func.uuid_generate_v4()
     )
-    name: Mapped[str] = mapped_column(String(30), nullable=False)
+    display_name: Mapped[str] = mapped_column(String(30), nullable=False)
     email: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     role: Mapped[UserRole] = mapped_column(
