@@ -37,3 +37,8 @@ class data_sources(Base):
         onupdate=func.now(),
         nullable = False
         )
+    enabled:Mapped[bool] = mapped_column(default = True)
+    created_at:Mapped[DateTime] = mapped_column(
+        DateTime(TimeZone = True)
+        ,server_default = func.now()
+        ,nullable = False)
