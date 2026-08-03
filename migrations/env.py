@@ -1,7 +1,18 @@
 from logging.config import fileConfig
-
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
+from app.db.base import Base
+from app.config import settings
+from app.models import career_path
+from app.models import data_source
+from app.models import data_source
+from app.models import forecast
+from app.models import market_data_points
+from app.models import market_signal
+from app.models import trend_alert
+from app.models import user_profile
+from app.models import user
+from sqlalchemy import create_engine
 
 from alembic import context
 
@@ -18,7 +29,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = None
+target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -52,14 +63,13 @@ def run_migrations_offline() -> None:
 
 def run_migrations_online() -> None:
     """Run migrations in 'online' mode.
-
+    
     In this scenario we need to create an Engine
     and associate a connection with the context.
 
     """
-    connectable = engine_from_config(
-        config.get_section(config.config_ini_section, {}),
-        prefix="sqlalchemy.",
+    connectable = create_engine(
+        settings.DATABASE_URL,
         poolclass=pool.NullPool,
     )
 
