@@ -1,20 +1,23 @@
-from pydantic import EmailStr,BaseModel,SecretStr
-from typing import Optional,Field
-from datetime import datetime,timezone
+from uuid import UUID
+from pydantic import EmailStr,BaseModel,SecretStr,Field,ConfigDict
+from typing import Optional
+from datetime import datetime
+from app.models.user import UserRole
+class Userbase(BaseModel):
+    email:EmailStr
 class UserCreate(BaseModel):
-    email:EmailStr
-    password:SecretStr
-    display_name:str
+    password:SecretStr= Field(min_length = 8)
+    display_name:str = Field(max_length = 50)
 class UserLogin(BaseModel):
-    email:EmailStr
     password:SecretStr
 class UserUpdate(BaseModel):
     email:Optional[EmailStr] = None
-    password:Optional[SecretStr] = None
-    display_name:Optional[str] = None
+    password:Optional[SecretStr] = Field(default = None,min_length=8)
+    display_name:Optional[str] = Field(default = None,min_length=50)
 class UserResponse(BaseModel):
-    id:str
+    id:UUID
     email:EmailStr
     display_name:str
-    role:str
-    created_at:datetime = Field(default_factory=lambda:datetime.now(timezone.utc))
+    role:UserRole
+    created_at:datetime
+    model_config = ConfigDict(from_attributes=True)
