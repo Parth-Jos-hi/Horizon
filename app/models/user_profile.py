@@ -6,9 +6,9 @@ from sqlalchemy.dialects.postgresql import UUID,JSONB
 from typing import Optional
 from sqlalchemy.orm import mapped_column,Mapped
 class User_Profile(Base):
-    __tablename__ ="user_profile"
-    id:Mapped[uuid.UUID] = mapped_column(UUID(as_uuid = True),primary_key = True,nullable = True,server_default = func.uuid_generate_v4())
-    user_id:Mapped[uuid.UUID] = mapped_column(ForeignKey("user.id"),nullable =False)
+    __tablename__ ="user_profiles"
+    id:Mapped[uuid.UUID] = mapped_column(UUID(as_uuid = True),primary_key = True,nullable = False,server_default = func.uuid_generate_v4())
+    user_id:Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id"),nullable =False)
     source_filename:Mapped[str]=mapped_column(String(100),nullable = True)
     original_file_storage_key:Mapped[str]=mapped_column(String(100),nullable = True)
     raw_text:Mapped[Text] = mapped_column(Text)

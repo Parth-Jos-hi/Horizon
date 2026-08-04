@@ -23,14 +23,30 @@ from app.models import user
 # access to the values within the .ini file in use.
 config = context.config
 
-# --- FIX FOR SPECIAL CHARACTERS IN PASSWORD ---
-# 1. Safely URL-encode the password (turns @ into %40)
-safe_password = urllib.parse.quote_plus("Imparth@12_12")
-# 2. Construct the full database URL
-db_url = f"postgresql://postgres:{safe_password}@db.fhsvahlkqpxyzrylrcna.supabase.co:5432/postgres"
-# 3. Force Alembic to use this URL, escaping the '%' symbol for configparser with '%%'
+# --- DYNAMIC DATABASE URL CONFIGURATION ---
+# Read from settings.DATABASE_URL and encode the password if needed.
+raw_url = settings.DATABASE_URL
+if "://" in raw_url:
+    scheme, rest = raw_url.split("://", 1)
+    if "@" in rest:
+        user_pass, host_db = rest.rsplit("@", 1)
+        if ":" in user_pass:
+            user, password = user_pass.split(":", 1)
+            # Unquote first to prevent double encoding, then quote
+            decoded_password = urllib.parse.unquote(password)
+            quoted_password = urllib.parse.quote_plus(decoded_password)
+            db_url = f"{scheme}://{user}:{quoted_password}@{host_db}"
+        else:
+            db_url = raw_url
+    else:
+        db_url = raw_url
+else:
+    db_url = raw_url
+
+# Force Alembic to use this URL, escaping the '%' symbol for configparser with '%%'
 config.set_main_option("sqlalchemy.url", db_url.replace('%', '%%'))
-# ----------------------------------------------
+# ------------------------------------------
+
 
 
 # Interpret the config file for Python logging.

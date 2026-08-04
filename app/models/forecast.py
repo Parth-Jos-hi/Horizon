@@ -20,7 +20,7 @@ class Forecasts(Base):
         nullable = False,
         server_default = func.uuid_generate_v4()
         )
-    requested_by_user_id:Mapped[uuid.UUID] = mapped_column(ForeignKey("user.id"),nullable = True)
+    requested_by_user_id:Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id"),nullable = True)
     metric_type:Mapped[MetricType] = mapped_column(Enum(MetricType),nullable = False)
     region: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
     sector: Mapped[Optional[str]] = mapped_column(String(100), nullable=True)
