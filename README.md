@@ -1,3 +1,4 @@
+#Project
 # Horizon
 
 A personalized career forecasting tool for the job market. Upload a resume, and Horizon extracts your profile, compares it against real labor market data and forecasts, and returns a concrete path — what's declining around your current position, what's rising nearby, and what to do about it. Periodic checks surface meaningful market changes afterward, without re-uploading anything.
