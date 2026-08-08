@@ -2,12 +2,13 @@ import datetime
 from typing import Optional
 from pydantic import BaseModel, Field
 from models.market_data_points import MetricType
+from uuid import UUID
 class DataPointResponse(BaseModel):
     """
     Schema for responding with a single MarketDataPoint.
     Mirrors the fields of models/market_data_point.py directly.
     """
-    id: int = Field(..., description="Unique identifier for the data point.")
+    id: UUID= Field(..., description="Unique identifier for the data point.")
     data_source_id: int = Field(..., description="Identifier of the source of this data.")
     metric_type: MetricType = Field(..., description="The type of metric recorded (e.g., salary, headcount).")
     region: str = Field(..., description="The geographical region the data point pertains to.")
