@@ -19,10 +19,8 @@ class DataPointResponse(BaseModel):
     raw_metadata: dict = Field(..., description="Raw, unparsed metadata associated with the data point.")
     class Config:
         # This setting tells Pydantic to read data directly from Python object attributes
-        # (like properties of a SQLAlchemy model instance) instead of just dictionary keys.
         from_attributes = True
         # This provides example data for API documentation tools (like FastAPI's Swagger UI).
-        # It shows developers what a typical response from this schema looks like.
         json_schema_extra = {
             "example": {
                 "id": 1,
