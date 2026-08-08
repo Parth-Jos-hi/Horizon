@@ -12,7 +12,6 @@ class ForecastCreate(BaseModel):
     horizon: Horizon
 class ForecastResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-
     id: UUID
     requested_by_user_id: Optional[UUID] = None
     metric_type: MetricType
