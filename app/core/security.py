@@ -2,7 +2,7 @@ from passlib.hash import bcrypt
 from datetime import datetime ,timedelta,timezone
 from uuid import UUID
 import jwt
-from jwt.expections import ExpiredSignatureError,InvalidTokenError
+from jwt.exceptions import ExpiredSignatureError,InvalidTokenError
 from app.config import settings
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
