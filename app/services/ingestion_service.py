@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.models.data_source import DataSource
-from app.models.market_data_point import MarketDataPoint, MetricType
+from app.models.market_data_points import MarketDataPoint, MetricType
 
 
 # --- BLS -----------------------------------------------------------------
