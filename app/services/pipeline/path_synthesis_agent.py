@@ -19,7 +19,7 @@ person's profile, write a concrete, specific recommended path — guide through 
 , no generic advice. Respond with ONLY valid JSON:
 {"recommended_path": str}"""
 
-SIGNIFICANCE_MIN_AGREEING_SIGNALS = 3
+SIGNIFICANCE_MIN_AGREEING_SIGNALS = 5
 
 
 class SynthesisOutput(BaseModel):
