@@ -15,8 +15,8 @@ from app.services.forecasting_service import get_historical_window
 from app.services.agent.llm_client import generate_text
 
 SYNTHESIS_SYSTEM_PROMPT = """Given declining and rising market signals for a
-person's profile, write a concrete, specific recommended path — 2-4
-sentences, no generic advice. Respond with ONLY valid JSON:
+person's profile, write a concrete, specific recommended path — guide through the path that where and how to improve
+, no generic advice. Respond with ONLY valid JSON:
 {"recommended_path": str}"""
 
 SIGNIFICANCE_MIN_AGREEING_SIGNALS = 3
