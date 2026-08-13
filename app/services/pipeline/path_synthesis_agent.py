@@ -12,7 +12,7 @@ from app.models.forecast import Forecast
 from app.models.career_path import CareerPath
 from app.models.trend_alert import TrendAlert
 from app.services.forecasting_service import get_historical_window
-from app.services.llm_client import generate_text
+from app.services.agent.llm_client import generate_text
 
 SYNTHESIS_SYSTEM_PROMPT = """Given declining and rising market signals for a
 person's profile, write a concrete, specific recommended path — 2-4
