@@ -30,7 +30,7 @@ def get_current_user(
         raise  HTTPException(
             status_code = status.HTTP_401_UNAUTHORIZED,
             detail = "Token has expired",
-            header = {"WWW-Authenticate":"Bearer"},
+            headers = {"WWW-Authenticate":"Bearer"},
         )
     except jwt.InvalidTokenError:
         raise credentials_error
