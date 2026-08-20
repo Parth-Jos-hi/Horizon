@@ -2,7 +2,6 @@
 from datetime import date
 from typing import Optional
 from uuid import UUID
-
 import numpy as np
 from sqlalchemy import select
 from sqlalchemy.orm import Session
