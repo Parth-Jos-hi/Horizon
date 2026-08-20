@@ -9,11 +9,10 @@ from app.models.user import User
 router = APIRouter()
 @router.post("/auth/register",response_model = UserResponse,status_code=status.HTTP_201_CREATED,)
 def register(data:UserCreate,db:Session=Depends(get_db)):
-    try:    
+    try:
         return register_user(data, db)
     except ValueError as e:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT,detail = str(e))
-
 @router.post("/auth/login")
 def login(form_data:OAuth2PasswordRequestForm=Depends(),db:Session=Depends(get_db),):
     user = authenticate_user(db,form_data.username,form_data.password)

@@ -5,23 +5,19 @@ from uuid import UUID
 import numpy as np
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-
 from app.models.market_data_points import MarketDataPoint, MetricType
 from app.models.forecast import Forecast, Horizon
-
 HORIZON_MONTHS = {
     Horizon.ONE_MONTH: 1,
     Horizon.THREE_MONTH: 3,
     Horizon.ONE_YEAR: 12,
 }
-
-
 def get_historical_window(
     session: Session,
     metric_type: MetricType,
     region: str,
     sector: Optional[str],
-    role_category: Optional[str],
+    role_category: Optional[str],      
 ) -> list[MarketDataPoint]:
     stmt = (
         select(MarketDataPoint)
@@ -34,8 +30,6 @@ def get_historical_window(
         .order_by(MarketDataPoint.period_date)
     )
     return list(session.execute(stmt).scalars().all())
-
-
 def apply_linear_trend(
     points: list[MarketDataPoint], horizon_months: int
 ) -> tuple[float, Optional[float], Optional[float]]:
@@ -55,10 +49,7 @@ def apply_linear_trend(
     std_error = float(np.std(residuals)) if len(residuals) > 2 else None
     confidence_low = predicted - 1.96 * std_error if std_error is not None else None
     confidence_high = predicted + 1.96 * std_error if std_error is not None else None
-
     return float(predicted), confidence_low, confidence_high
-
-
 def generate_forecast(
     session: Session,
     metric_type: MetricType,
