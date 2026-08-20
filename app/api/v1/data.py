@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,APIRouter
 from app.models import market_data_points
 from typing import Optional
 app = FastAPI()
