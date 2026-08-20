@@ -5,7 +5,8 @@ from fastapi import APIRouter,Depends,Query
 from sqlalchemy.orm import Session
 from app.services.forecasting_service import get_historical_window
 from app.models.market_data_points import MarketDataPoint, MetricType
-# from app.dependencies import get_db, get_current_user
+from app.schemas.forecast import ForecastCreate,ForecastResponse
+from app.services.forecasting_service import generate_forecast
 router = APIRouter()
 @router.get("/forecast",response_model = list[get_historical_window])
 def list_forecast(
@@ -29,3 +30,9 @@ def list_forecast(
     
     data = data.offset((page - 1) * limit).limit(limit)
     return db.execute(data).scalars().all()
+@router.post("/forecast",response_model = list[ForecastResponse])
+def forecast_response(
+    id :UUID,
+    
+    
+)

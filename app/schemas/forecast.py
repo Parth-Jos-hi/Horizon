@@ -4,6 +4,7 @@ from uuid import UUID
 from pydantic import BaseModel, ConfigDict
 from app.models.market_data_points import MetricType
 from app.models.forecast import Horizon
+from app.services.forecasting_service import 
 class ForecastCreate(BaseModel):
     metric_type: MetricType
     region: str
