@@ -32,3 +32,15 @@ def list_data_points(
         data = data.where(MarketDataPoint.metric_type==metric_type)
     data = data.offset((page - 1) * limit).limit(limit)
     return db.execute(data).scalars().all()
+@router.get("/data/{id}",response_model = DataPointResponse)
+def get_current_user(user_id:UUID,
+        db:Session=Depends(get_db),
+        current_user:User = Depends(get_current_user),
+        ):
+    user = db.get(MarketDataPoint,id)
+    if user in None:
+        raise HTTPException(
+            status_code = status.HTTP_404_NOT_FOUND,
+            detail = "User is not in the data list",
+        )
+    return user
