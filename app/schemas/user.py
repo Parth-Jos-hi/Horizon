@@ -8,6 +8,7 @@ class Userbase(BaseModel):
 class UserCreate(BaseModel):
     password:SecretStr= Field(min_length = 8)
     display_name:str = Field(max_length = 50)
+    email:EmailStr = Field(max_length = 100)
 class UserLogin(BaseModel):
     password:SecretStr
 class UserUpdate(BaseModel):

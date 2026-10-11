@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 from app.dependencies import get_db, get_current_user
-from app.models.market_data_points import MarketDataPoint, MetricType
+from app.models.market_data_points import MetricType
 from app.models.user import User
 from app.schemas.data import DataPointResponse
 router = APIRouter()

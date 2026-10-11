@@ -4,7 +4,7 @@ from typing import Optional
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env",env_file_encoding="utf-8",extra = "ignore")
     DATABASE_URL: str
-    API_KEY  : Optional[str]
+    API_KEY  : Optional[str] = None
     JWT_SECRET_KEY: str
 settings = Settings()
 

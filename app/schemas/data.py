@@ -1,7 +1,7 @@
 import datetime
 from typing import Optional
 from pydantic import BaseModel, Field
-from models.market_data_points import MetricType
+from app.models.market_data_points import MetricType
 from uuid import UUID
 class DataPointResponse(BaseModel):
     """
