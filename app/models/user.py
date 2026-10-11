@@ -14,7 +14,7 @@ class User(Base):
     id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True), primary_key=True, server_default=func.uuid_generate_v4()
     )
-    name: Mapped[str] = mapped_column(String(30), nullable=False)
+    display_name: Mapped[str] = mapped_column("name", String(30), nullable=False)
     email: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     role: Mapped[UserRole] = mapped_column(
@@ -31,6 +31,6 @@ class User(Base):
     )
     def __repr__(self) -> str:
         return (
-            f"User(id={self.id!r}, name={self.name!r}, email={self.email!r}, "
+            f"User(id={self.id!r}, display_name={self.display_name!r}, email={self.email!r}, "
             f"role={self.role!r}, created_at={self.created_at!r})"
         )
